@@ -23,15 +23,351 @@
 
             <nav class="menu" id="menu">
                 <a href="#">Inicio</a>
-                <a href="#">Mapeo directo</a>
-                <a href="#">Mapeo asociativo</a>
-                <a href="#">Información</a>
+                <a href="#calculo">Calculadora</a>
+                <a href="#informacion">Información</a>
             </nav>
         </div>
     </header>
 
     <main> 
-        <h1>Calculadora de Caché</h1>    
+    
+        <section class="hero">
+            <div class="hero-contenido">
+                <span class="etiqueta">
+                    ARQUITECTURA DE COMPUTADORAS
+                </span>
+                <h1>
+                    Calculadora de Caché
+                </h1>
+                <p>
+                    Analizá y calcula diferentes esquemas de mapeo de memoria caché de forma rapida y sencilla.
+                </p>
+            </div>
+        </section> 
+    
+    <section class="seccion" id="calculo">
+        <div class="seccion-titulo">
+            <span>
+                TIPO DE MAPEO
+            </span>
+            <h2>
+                ¿Qué tipo de mapeo querés calcular?
+            </h2>
+            <p>
+                Seleccioná el tipo de mapeo que querés utilizar para comenzar.
+            </p>
+        </div>
+
+        <div class="opciones-mapeo">
+            
+            <label class="opcion-mapeo">
+                <input 
+                    id="0"
+                    type="radio"
+                    name="mapeo"
+                    value="asociativo"
+                    checked
+                    onclick="swap(1,0)"
+                >
+                <div class="opcion-contenido">
+                    <div class="icono-mapeo">
+                        ⇄
+                    </div>
+                    <div>
+                        <h3>
+                            Mapeo Asociativo
+                        </h3>
+                        <p>
+                            En este tipo de mapeo, cualquier bloque de memoria puede ser almacenado en cualquier línea de la caché.
+                        </p>
+                    </div>
+                </div>
+            </label>
+            
+            <label class="opcion-mapeo">
+                <input 
+                    id="1"
+                    type="radio"
+                    name="mapeo"
+                    value="directo"
+                    onclick="swap(0,1)"
+                >
+                <div class="opcion-contenido">
+                    <div class="icono-mapeo">
+                        ↗
+                    </div>
+                    <div>
+                        <h3>
+                            Mapeo Directo
+                        </h3>
+                        <p>
+                            En este tipo de mapeo, cada bloque de memoria tiene una línea específica en la caché donde puede ser almacenado.
+                        </p>
+                    </div>
+                </div>
+            </label>
+        </div>
+
+        <div class="seccion-titulo datos-titulo">
+            <span>
+                DATOS DE MEMORIA
+            </span>
+            <h2>
+                Ingresá los datos de memoria para calcular el mapeo
+            </h2>
+            <p>
+                Completa con los datos correspondientes a la memoria principal y la memoria caché para calcular el mapeo. 
+            </p>
+        </div>
+
+        <div class="contenedor-memorias">
+            <section class="tarjeta-memoria">
+                <div class="titulo-memoria">
+                    <div class="icono-memoria">
+                        M
+                    </div>
+
+                    <div>
+                        <h3>Memoria Principal</h3>
+                        <p>
+                            Configuración de la memoria principal
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="campos">
+                    <div class="campo">
+                        <label for="capMemP">
+                            Capacidad de memoria
+                        </label>
+
+                        <div class="campo-grupo">
+                            <input
+                            id="capMemP"
+                            type="number"
+                            placeholder="Capacidad"
+                            >
+                            
+                            <select id="capMemPeso">
+                                
+                                <option value="b">Bits</option>
+                                <option value="B">Bytes</option>
+                                <option value="Kb">Kbytes</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+                    <div class="campo">
+                        <label for="nCell">
+                            Cantidad de celdas
+                        </label>
+
+                        <input
+                        id="nCell"
+                        type="number"
+                        placeholder="Cantidad"
+                        >
+
+                    </div>
+                    <div class="campo">
+                        <label for="CellxBloq">
+                            Celdas por bloque
+                        </label>
+
+                        <input
+                            id="CellxBloq"
+                            type="number"
+                            placeholder="Cantidad"
+                        >
+
+                    </div>
+                    <div class="campo">
+                        <label for="capCell">
+                            Capacidad de celda
+                        </label>
+
+                        <div class="campo-grupo">
+                            <input
+                                id="capCell"
+                                type="number"
+                                placeholder="Capacidad"
+                            >
+
+                            <select id="capCellPeso">
+                                <option value="b">Bits</option>
+                                <option value="B">Bytes</option>
+                                <option value="Kb">Kbytes</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="tarjeta-memoria">
+                <div class="titulo-memoria">
+                    <div class="icono-memoria cache">
+                        C 
+                    </div>
+
+                    <div>
+                        <h3>Memoria Caché</h3>
+                        <p>
+                            Configuración de la memoria caché
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="campos">
+                    <div class="campo">
+                        <label for="capMemC">
+                            Capacidad de caché
+                        </label>
+
+                        <div class="campo-grupo">
+                            <input
+                                id="capMemC"
+                                type="number"
+                                placeholder="Capacidad"
+                            >
+
+                            <select id="capCachePeso">
+                                <option value="b">Bits</option>
+                                <option value="B">Bytes</option>
+                                <option value="Kb">Kbytes</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="campo">
+                        <label for="capLine">
+                            Capacidad de línea
+                        </label>
+
+                        <div class="campo-grupo">
+                            <input
+                                id="capLine"
+                                type="number"
+                                placeholder="Capacidad"
+                            >
+
+                            <select id="capLinePeso">
+                                <option value="b">Bits</option>
+                                <option value="B">Bytes</option>
+                                <option value="Kb">Kbytes</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="campo">
+                        <label for="nLines">
+                            Cantidad de líneas
+                        </label>
+
+                        <input
+                            id="nLines"
+                            type="number"
+                            placeholder="Cantidad"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <div class="zona-calcular">
+            <button
+                id="button"
+                class="boton-calcular"
+                onclick="calculate()">
+            Calcular
+            <span>→</span>
+
+            </button>
+
+        </div>
+
+        <section
+            class="tarjeta-resultado"
+            id="miTarjeta">
+        
+            <div class="resultado-titulo">
+                <div class="resultado-icono">
+                    ✓
+                </div>
+
+                <div>
+                    <span>RESULTADO</span>
+                    <h2>Resultado del cálculo</h2>
+                </div>
+
+            </div>
+
+            <ul id="resList"></ul>
+
+        </section>
+
+    </section>
+
+    <section 
+        class="seccion informacion"
+        id="informacion">
+    
+        <div class="seccion-titulo">
+            <span>Información</span>
+            <h2>
+                Tipos de mapeo de memoria caché
+            </h2>
+
+        </div>
+
+        <div class="info-grid">
+            <article class="info-card">
+                <div class="info-icono">
+                    ↗
+                </div>
+
+                <h3>Mapeo Directo</h3>
+                <p>
+                    En este tipo de mapeo, cada bloque de memoria tiene una línea específica en la caché donde puede ser almacenado. 
+                    Esto significa que un bloque de memoria solo puede ser almacenado en una ubicación específica de la caché.
+                </p>
+
+            </article>
+
+            <article class="info-card">
+                <div class="info-icono">
+                    ⇄
+                </div>
+
+                <h3>Mapeo Asociativo</h3>
+                <p>
+                    En este tipo de mapeo, cualquier bloque de memoria puede ser almacenado en cualquier línea de la caché. 
+                    Esto significa que un bloque de memoria puede ser almacenado en múltiples ubicaciones de la caché, lo que permite una mayor flexibilidad en la asignación de bloques.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+    
     </main>
 
     <script src="../javascript/script.js"></script>
