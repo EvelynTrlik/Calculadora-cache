@@ -237,6 +237,14 @@ function elem(elemId){
   }
 
   function calculate(){
+    const vistaCajas = document
+    .getElementById("vista-cajas")
+    .classList
+    .contains("activa");
+
+  if (vistaCajas) {
+    sincronizarCajasALista();
+  }
     var list = elem('resList');
     list.innerHTML = "";
     if (!elem('miTarjeta').classList.contains('activo')){
@@ -264,3 +272,96 @@ const menu = document.getElementById("menu");
 menuToggle.addEventListener("click", () => {
   menu.classList.toggle("active");
 });
+
+function cambiarVista(vista) {
+
+    const lista = document.getElementById("vista-lista");
+    const cajas = document.getElementById("vista-cajas");
+
+    if (vista === "cajas") {
+
+        sincronizarListaACajas();
+
+        lista.classList.add("oculta");
+        cajas.classList.add("activa");
+
+    } else {
+
+        sincronizarCajasALista();
+
+        cajas.classList.remove("activa");
+        lista.classList.remove("oculta");
+    }
+}
+
+function sincronizarListaACajas() {
+
+    document.getElementById("box-capMemP").value =
+        document.getElementById("capMemP").value;
+
+    document.getElementById("box-capMemPeso").value =
+        document.getElementById("capMemPeso").value;
+
+    document.getElementById("box-nCell").value =
+        document.getElementById("nCell").value;
+
+    document.getElementById("box-CellxBloq").value =
+        document.getElementById("CellxBloq").value;
+
+    document.getElementById("box-capCell").value =
+        document.getElementById("capCell").value;
+
+    document.getElementById("box-capCellPeso").value =
+        document.getElementById("capCellPeso").value;
+
+    document.getElementById("box-capMemC").value =
+        document.getElementById("capMemC").value;
+
+    document.getElementById("box-capCachePeso").value =
+        document.getElementById("capCachePeso").value;
+
+    document.getElementById("box-capLine").value =
+        document.getElementById("capLine").value;
+
+    document.getElementById("box-capLinePeso").value =
+        document.getElementById("capLinePeso").value;
+
+    document.getElementById("box-nLines").value =
+        document.getElementById("nLines").value;
+}
+
+function sincronizarCajasALista() {
+
+    document.getElementById("capMemP").value =
+        document.getElementById("box-capMemP").value;
+
+    document.getElementById("capMemPeso").value =
+        document.getElementById("box-capMemPeso").value;
+
+    document.getElementById("nCell").value =
+        document.getElementById("box-nCell").value;
+
+    document.getElementById("CellxBloq").value =
+        document.getElementById("box-CellxBloq").value;
+
+    document.getElementById("capCell").value =
+        document.getElementById("box-capCell").value;
+
+    document.getElementById("capCellPeso").value =
+        document.getElementById("box-capCellPeso").value;
+
+    document.getElementById("capMemC").value =
+        document.getElementById("box-capMemC").value;
+
+    document.getElementById("capCachePeso").value =
+        document.getElementById("box-capCachePeso").value;
+
+    document.getElementById("capLine").value =
+        document.getElementById("box-capLine").value;
+
+    document.getElementById("capLinePeso").value =
+        document.getElementById("box-capLinePeso").value;
+
+    document.getElementById("nLines").value =
+        document.getElementById("box-nLines").value;
+}

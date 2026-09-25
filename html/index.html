@@ -108,6 +108,33 @@
             </label>
         </div>
 
+        <div class="selector-vista">
+    <span>VISTA DE LOS DATOS</span>
+
+    <div class="selector-vista-opciones">
+        <label>
+            <input
+                type="radio"
+                name="vista-calculo"
+                id="vistaLista"
+                checked
+                onclick="cambiarVista('lista')"
+            >
+            <span>Lista</span>
+        </label>
+
+        <label>
+            <input
+                type="radio"
+                name="vista-calculo"
+                id="vistaCajas"
+                onclick="cambiarVista('cajas')"
+            >
+            <span>Cajas</span>
+        </label>
+    </div>
+</div>
+
         <div class="seccion-titulo datos-titulo">
             <span>
                 DATOS DE MEMORIA
@@ -120,7 +147,7 @@
             </p>
         </div>
 
-        <div class="contenedor-memorias">
+        <div class="contenedor-memorias vista-calculo vista-lista" id="vista-lista">
             <section class="tarjeta-memoria">
                 <div class="titulo-memoria">
                     <div class="icono-memoria">
@@ -290,6 +317,152 @@
             </section>
 
         </div>
+
+        <div class="vista-calculo vista-cajas" id="vista-cajas">
+
+    <div class="diagram-container-cajas">
+
+        <div class="container-cajas">
+
+            <!-- MEMORIA PRINCIPAL -->
+            <div class="column-cajas">
+
+                <div class="mem-principal-box">
+                    <div class="contenedor-lineal">
+                        <input
+                            id="box-capMemP"
+                            type="number"
+                            class="text-box-s box-internal-mp"
+                            placeholder="cap. mem. P"
+                        >
+
+                        <select id="box-capMemPeso">
+                            <option value="b">Bits</option>
+                            <option value="B">Bytes</option>
+                            <option value="Kb">Kbytes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- CORCHETE SUPERIOR -->
+                <div class="bracket bracket-right-top-mp">
+                    <input
+                        id="box-CellxBloq"
+                        type="number"
+                        class="text-box"
+                        placeholder="celdas x bloq"
+                    >
+                </div>
+
+                <!-- CORCHETE IZQUIERDO -->
+                <div class="bracket bracket-left-mp">
+                    <input
+                        id="box-nCell"
+                        type="number"
+                        class="text-box"
+                        placeholder="cant. de celdas"
+                    >
+                </div>
+
+                <!-- CORCHETE INFERIOR -->
+                <div class="bracket bracket-bottom-mp">
+
+                    <div
+                        class="contenedor-lineal"
+                        style="top: 22px; left: 4px;"
+                    >
+                        <input
+                            id="box-capCell"
+                            type="number"
+                            class="text-box bottom-box"
+                            placeholder="cap. de celda"
+                        >
+
+                        <select id="box-capCellPeso">
+                            <option value="b">Bits</option>
+                            <option value="B">Bytes</option>
+                            <option value="Kb">Kbytes</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MEMORIA CACHE -->
+            <div class="column-cajas">
+
+                <div class="mem-cache-box">
+
+                    <div
+                        class="contenedor-lineal"
+                        style="gap: 10px; left: -3px;"
+                    >
+
+                        <input
+                            id="box-capMemC"
+                            type="number"
+                            class="text-box-s box-internal-mc"
+                            placeholder="cap. cache"
+                            style="width: 60%;"
+                        >
+
+                        <select id="box-capCachePeso">
+                            <option value="b">Bits</option>
+                            <option value="B">Bytes</option>
+                            <option value="Kb">Kbytes</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CORCHETE INFERIOR -->
+                <div class="bracket bracket-bottom-mc">
+
+                    <div
+                        class="contenedor-lineal"
+                        style="gap: 5px; top: 25px; left: 2px;"
+                    >
+
+                        <input
+                            id="box-capLine"
+                            type="number"
+                            class="text-box"
+                            placeholder="cap. de linea"
+                        >
+
+                        <select id="box-capLinePeso">
+                            <option value="b">Bits</option>
+                            <option value="B">Bytes</option>
+                            <option value="Kb">Kbytes</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CORCHETE DERECHO -->
+                <div class="bracket bracket-right-mc">
+
+                    <input
+                        id="box-nLines"
+                        type="number"
+                        class="text-box box-right-mc"
+                        placeholder="cant. de lineas"
+                    >
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
         <div class="zona-calcular">
             <button
