@@ -551,7 +551,7 @@ main h1 {
 
 .diagram-container-cajas {
     position: relative;
-    width: 100%;
+    width: 104%;
     min-height: 500px;
 
     display: flex;
@@ -578,8 +578,8 @@ main h1 {
 
 .mem-principal-box {
     position: relative;
-    width: 39%;
-    left: 30%;
+    width: 50%;
+    left: 178px;
     height: 80%;
 
     border: 3px solid #102a43;
@@ -628,8 +628,8 @@ main h1 {
 }
 
 .text-box {
-    min-width: 80px;
-    width: 110px;
+    min-width: 100px;
+    width: 126px;
 }
 
 .box-internal-mp {
@@ -654,20 +654,20 @@ main h1 {
 
 .bracket-left-mp {
     border-right-color: transparent;
-    width: 15px;
-    height: 360px;
-    position: absolute;
-    top: 22px;
-    left: 130px;
+    width: 12px;
+    height: 330px;
+    position: relative;
+    bottom: 404px;
+    left: 155px;
 }
 
 .bracket-right-top-mp {
     border-left-color: transparent;
     width: 15px;
     height: 75px;
-    position: absolute;
-    top: 22px;
-    left: 340px;
+    position: relative;
+    bottom: 328px;
+    left: 391px;
 }
 
 .bracket-right-mc {
@@ -675,8 +675,8 @@ main h1 {
     border-left-color: transparent;
     width: 15px;
     height: 100px;
-    top: 15px;
-    left: 220px;
+    top: 25px;
+    left: 215px;
 }
 
 .bracket-bottom-mc {
@@ -690,11 +690,11 @@ main h1 {
 
 .bracket-bottom-mp {
     position: relative;
-    top: 5px;
+    bottom: 390px;
     border-top-color: transparent;
-    width: 170px;
+    width: 208px;
     height: 15px;
-    left: 136px;
+    left: 175px;
 }
 
 .bottom-box {
@@ -747,6 +747,8 @@ main h1 {
 
     .container-cajas {
         grid-template-columns: 450px 450px;
+        position: relative;
+        left: 7px;
     }
 
 }
