@@ -38,7 +38,7 @@ function elem(elemId){
     const capCB = capC * toB[unitC]
     const resB = capMB/capCB
 
-    console.log("B", capMB, capCB, resB)
+    console.log(toB[unitM], toB[unitC], capMB, capCB, resB)
     if(capMB % 1 === 0 && capCB % 1 === 0 && resB % 1 === 0){ return {m: capMB, c:capCB, unit:'B', r:resB};}
     else{
       const capMb = capM * tob[unitM]
@@ -65,7 +65,7 @@ function elem(elemId){
     }
     else{ return temp;}
   };
-  calcAssocP = (temp) => {//calculo de assoc con cap de mem y de cell
+  calcAssocP = (temp) => {//calculo de assoc con cellxblq, cap de mem y de cell
     unitM = elem('capMemPeso').value
     unitC = elem('capCellPeso').value
     if(isEmpty(temp) && checkAssocP()){
@@ -83,7 +83,7 @@ function elem(elemId){
     }
     else{ return temp; }
   };
-  calcAssocP2 = (temp) => {//calculo de assoc con cap de mem y de linea
+  calcAssocP2 = (temp) => {//calculo de assoc con cellxblq, cap de mem y de linea
     unitL = elem('capLinePeso').value;
     unitM = elem('capMemPeso').value;
     if(isEmpty(temp) && checkAssocP2()){
@@ -96,6 +96,92 @@ function elem(elemId){
       temp.push(
         "capCell = cap de line / cell x blq = " +capL+unitL+ " / "+cxb+" = "+capC+unitL,
         "nCell = capMemP / capCell = "+capM+unitM + " / "+capC+unitL+" = "+ncell+" celdas de memoria",
+        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" , 
+        "Tag(nro de blq) = n cell / cell x blq = "+ncell+" / "+cxb+" = "+tag+" => "+log2(tag)+" bits para tag"
+      );
+      return temp;
+    }
+    else{return temp;}
+  };
+  calcAssocP3 = (temp) => {//calculo de assoc con cap de cell, de mem y de linea
+    unitC = elem('capCellPeso').value;
+    unitL = elem('capLinePeso').value;
+    unitM = elem('capMemPeso').value;
+    if(isEmpty(temp) && checkAssocP3()){
+      const capM = elem('capMemP').value;
+      const capL = elem('capLine').value;
+      const capC = elem('capCell').value;
+      const cxb = safeDivP(capL, unitL, capC, unitC).r;
+      const ncell = safeDivP(capM, unitM, capC, unitC).r;
+      const tag = safeDiv(ncell, cxb);
+      temp.push(
+        "cell x blq = cap de line / cap de cell = "+capL+unitL+" / "+capC+unitC+" = "+cxb+" celdas por bloque",
+        "nCell = capMemP / capCell = "+capM+unitM + " / "+capC+unitC+" = "+ncell+" celdas de memoria",
+        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" , 
+        "Tag(nro de blq) = n cell / cell x blq = "+ncell+" / "+cxb+" = "+tag+" => "+log2(tag)+" bits para tag"
+      );
+      return temp;
+    }
+    else{return temp;}
+  };
+  calcAssocP4 = (temp) => {//calculo de assoc con cap de cell, de mem, de la cache y la cantidad de lineas
+    unitC = elem('capCellPeso').value;
+    unitMC = elem('capCachePeso').value;
+    unitM = elem('capMemPeso').value;
+    if(isEmpty(temp) && checkAssocP4()){
+      const capM = elem('capMemP').value;
+      const capC = elem('capCell').value;
+      const capCache = elem('capMemC').value;
+      const nl = elem('nLines').value;
+
+      const capL = safeDivP(capCache, unitMC, nl, unitMC).r;
+      const cxb = safeDivP(capL, unitMC, capC, unitC).r;
+      const ncell = safeDivP(capM, unitM, capC, unitC).r;
+      const tag = safeDiv(ncell, cxb);
+      temp.push(
+        "cap line = cap de cache / n lines = "+capCache+unitMC+" / "+nl+" = "+capL+unitMC+" cap de linea",
+        "cell x blq = cap de line / cap de cell = "+capL+unitMC+" / "+capC+unitC+" = "+cxb+" celdas por bloque",
+        "nCell = capMemP / capCell = "+capM+unitM + " / "+capC+unitC+" = "+ncell+" celdas de memoria",
+        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" , 
+        "Tag(nro de blq) = n cell / cell x blq = "+ncell+" / "+cxb+" = "+tag+" => "+log2(tag)+" bits para tag"
+      );
+      return temp;
+    }
+    else{return temp;}
+  };
+  calcAssocP5 = (temp) => {
+    unitC = elem('capCellPeso').value;
+    unitMC = elem('capCachePeso').value;
+    if(isEmpty(temp) && checkAssocP5()){
+      const capC = elem('capCell').value;
+      const capCache = elem('capMemC').value;
+      const nl = elem('nLines').value;
+      const nCell = elem('nCell').value;
+
+      const capL = safeDivP(capCache, unitMC, nl, unitMC).r;
+      const cxb = safeDivP(capL, unitMC, capC, unitC).r;
+      const tag = safeDiv(nCell, cxb);
+      temp.push(
+        "cap line = cap de cache / n lines = "+capCache+unitMC+" / "+nl+" = "+capL+unitMC+" cap de linea",
+        "cell x blq = cap de line / cap de cell = "+capL+unitMC+" / "+capC+unitC+" = "+cxb+" celdas por bloque",
+        "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" , 
+        "Tag(nro de blq) = n cell / cell x blq = "+nCell+" / "+cxb+" = "+tag+" => "+log2(tag)+" bits para tag"
+      );
+      return temp;
+    }
+    else{return temp;}
+  };
+  calcAssocP6 = (temp) => {//calculo de assoc con cap de cell, de mem y de linea
+    unitC = elem('capCellPeso').value;
+    unitL = elem('capLinePeso').value;
+    if(isEmpty(temp) && checkAssocP6()){
+      const capL = elem('capLine').value;
+      const capC = elem('capCell').value;
+      const cxb = safeDivP(capL, unitL, capC, unitC).r;
+      const ncell = elem('nCell').value;
+      const tag = safeDiv(ncell, cxb);
+      temp.push(
+        "cell x blq = cap de line / cap de cell = "+capL+unitL+" / "+capC+unitC+" = "+cxb+" celdas por bloque",
         "Palabra = cell x blq = "+cxb+" celdas por bloque => "+log2(cxb)+" bits para palabra" , 
         "Tag(nro de blq) = n cell / cell x blq = "+ncell+" / "+cxb+" = "+tag+" => "+log2(tag)+" bits para tag"
       );
@@ -207,6 +293,32 @@ function elem(elemId){
       //con la cap de una linea
       !capLineIsEmpty();
   }
+  function checkAssocP3(){
+    return isAssoc() && 
+      !capMemIsEmpty() && 
+      !capCellIsEmpty() &&
+      !capLineIsEmpty()
+  }
+  function checkAssocP4(){
+    return isAssoc() && 
+      !capMemIsEmpty() &&
+      !capCellIsEmpty() &&
+      !capCacheIsEmpty() &&
+      !nLinesIsEmpty();
+  }
+  function checkAssocP5(){
+    return isAssoc() && 
+      !capCellIsEmpty() &&
+      !capCacheIsEmpty() &&
+      !nLinesIsEmpty() &&
+      !nCellIsEmpty();
+  }
+  function checkAssocP6(){
+    return isAssoc() &&
+      !capCellIsEmpty() &&
+      !capLineIsEmpty() &&
+      !nCellIsEmpty();
+  }
   function checkDirS(){
       return isDir() && !nCellIsEmpty() && !cellxBloqIsEmpty() && !nLinesIsEmpty();
   }
@@ -252,8 +364,8 @@ function elem(elemId){
     }
     try {
       answer = [];
-      answer = calcAssocP2(calcAssocP(calcAssocS(answer)))
-      answer = calcDirP3(calcDirP2(calcDirP(calcDirS(answer))))
+      answer = calcAssocP6(calcAssocP5(calcAssocP4(calcAssocP3(calcAssocP2(calcAssocP(calcAssocS(answer)))))));
+      answer = calcDirP3(calcDirP2(calcDirP(calcDirS(answer))));
       console.log(answer)
       if(answer.length == 0) { throw new Error("faltan datos para resolver");}
       else{
