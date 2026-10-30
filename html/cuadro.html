@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Calculadora de Caché</title>
+
+    <link rel="stylesheet" href="..\css/estilos.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-contenido">
+            <a href="#" class="logo">
+                Cuadro de Caché
+            </a>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                ☰
+            </button>
+
+            <nav class="menu" id="menu">
+                <a href="#">Inicio</a>
+                <a href="#cuadro">Cuadro</a>
+                <a href="#informacion">Información</a>
+                <a href="index.html">Calculadora de Caché</a>
+            </nav>
+        </div>
+    </header>
+
+    <main> 
+    
+        <section class="hero">
+            <div class="hero-contenido">
+                <span class="etiqueta">
+                    ARQUITECTURA DE COMPUTADORAS
+                </span>
+                <h1>
+                    Cuadro de Caché
+                </h1>
+                <p>
+                   Ayuda a comprender la creacion de cuadros de cache, con distrbucion, datos, y su informacion
+                </p>
+            </div>
+        </section> 
+    
+        <section class="seccion" id="cuadro">
+        <div class="seccion-titulo">
+            <span>
+                TIPO DE MAPEO
+            </span>
+            <h2>
+                ¿Qué tipo de mapeo querés usar?
+            </h2>
+            <p>
+                Seleccioná el tipo de mapeo que querés utilizar para comenzar.
+            </p>
+        </div>
+
+        <div class="opciones-mapeo">
+            
+            <label class="opcion-mapeo">
+                <input 
+                    id="0"
+                    type="radio"
+                    name="mapeo"
+                    value="asociativo"
+                    checked
+                    onclick="mostrarCuadro()"
+                >
+                <div class="opcion-contenido">
+                    <div class="icono-mapeo">
+                        ⇄
+                    </div>
+                    <div>
+                        <h3>
+                            Mapeo Asociativo
+                        </h3>
+                        <p>
+                            En este tipo de mapeo, cualquier bloque de memoria puede ser almacenado en cualquier línea de la caché.
+                        </p>
+                    </div>
+                </div>
+            </label>
+            
+            <label class="opcion-mapeo">
+                <input 
+                    id="1"
+                    type="radio"
+                    name="mapeo"
+                    value="directo"
+                    onclick="mostrarCuadro()"
+                >
+                <div class="opcion-contenido">
+                    <div class="icono-mapeo">
+                        ↗
+                    </div>
+                    <div>
+                        <h3>
+                            Mapeo Directo
+                        </h3>
+                        <p>
+                            En este tipo de mapeo, cada bloque de memoria tiene una línea específica en la caché donde puede ser almacenado.
+                        </p>
+                    </div>
+                </div>
+            </label>
+            <div id="contenedorCuadro"></div>
+        </div>
+        </section>
+    </main>
+
+    <script src="../javascript/script.js"></script>
+    </body>
+</html>
