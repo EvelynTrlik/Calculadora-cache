@@ -477,3 +477,41 @@ function sincronizarCajasALista() {
     document.getElementById("nLines").value =
         document.getElementById("box-nLines").value;
 }
+//cargar cuadro asosiativo
+async function cargarCuadroAsosiativo() {
+  const respuesta = await fetch('./cuadroAsosiativo.json');
+  const datos = await respuesta.json();
+
+  mostrarTabla(true);
+}
+//cargar cuadro directo
+async function cargarCuadroDirecto() {
+  const respuesta = await fetch('./cuadroDirecto.json');
+  const datos = await respuesta.json();
+
+  mostrarTabla(false);
+}
+
+function mostrarCuadro() {
+  if (isAssoc()) {
+    cargarCuadroAsosiativo();
+  } else {
+    cargarCuadroDirecto();
+  } 
+}
+
+function mostrarTabla(asociativo) {
+  const columnas = asociativo
+    ? ["Tag", "Palabra", "A/F"]
+    : ["Tag", "Línea", "Palabra", "A/F"];
+
+  let tabla = "<table><thead><tr>";
+
+  columnas.forEach(columna => {
+    tabla += `<th>${columna}</th>`;
+  });
+
+  tabla += "</tr></thead><table>";
+
+  document.getElementById("contenedorCuadro").innerHTML = tabla;
+}
